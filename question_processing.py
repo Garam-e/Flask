@@ -45,16 +45,23 @@ def select_best_question(question, model, embedding_question, df):
 
         # 답변
         answer = df['답변'][best_sim_idx]
-        link = df['링크'][best_sim_idx].strip().split('\n')
-        button_name = df['비고'][best_sim_idx].strip().split('\n')
-        if isinstance(answer, int):
-              answer = df['답변'][answer]
-              link = df['링크'][answer].strip().split('\n')
-              button_name = df['비고'][best_sim_idx].strip().split('\n')
 
-        print(f"\n답변 : {answer}\n")
-        print(f"\n링크 : {link}\n")
-    
+        if isinstance(answer, int):
+            link = df['링크'][answer]
+            button_name = df['비고'][answer]
+            answer = df['답변'][answer]
+        else:
+            link = df['링크'][best_sim_idx]
+            button_name = df['비고'][best_sim_idx]
+        
+        if pd.isna(link):
+            link = 'No data'
+        else:
+            link = link.strip().split('\n')
+        if pd.isna(button_name):
+            button_name = 'No data'
+        else:
+            button_name = button_name.strip().split('\n')
 
         end = time.time()
         print(f"질문 선정하는데 걸리는 시간 : {end - start: .5f} sec")
