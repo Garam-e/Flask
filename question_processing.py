@@ -6,11 +6,10 @@ import time
 
 # 모델과 데이터를 로드하는 함수
 def load_data():
-    name = "23_11_05"
     print("데이터 로딩 중...")
     model = SentenceTransformer('snunlp/KR-SBERT-V40K-klueNLI-augSTS')
-    embedding_question = torch.load(f'{name}.pt')
-    df = pd.read_excel(f"{name}_embedding.xlsx")
+    embedding_question = torch.load(f'dataset\\23_11_05.pt')
+    df = pd.read_excel(f"dataset\\23_11_05_embedding.xlsx")
     print("데이터 로드 완료")
     return model, embedding_question, df
 
