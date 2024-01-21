@@ -4,3 +4,7 @@ pandas
 numpy
 time
 flask
+APScheduler
+httpx
+BeautifulSoup
+json
