@@ -48,6 +48,10 @@ scheduler.add_job(crawl_site3, 'interval', seconds=10)
 scheduler.add_job(crawl_site4, 'interval', weeks=1, start_date='2024-01-22')
 scheduler.start()
 
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
 # 전역 변수로 모델, 임베딩, 데이터프레임을 로드
 model, embedding_question, df = load_data()
 
@@ -78,4 +82,4 @@ if __name__ == '__main__':
     crawl_site2()
     crawl_site3()
     crawl_site4()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
