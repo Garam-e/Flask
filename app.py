@@ -65,16 +65,16 @@ def get_question(question):
                     "link": link,
                     "question" : question})
 
-# 데이터를 반환하는 라우트
-@app.route('/get-data/<site>')
-def get_data(site):
-    filename = f'dataset\crawling\data_site{site}.json'
-    try:
-        with open(filename, 'r') as file:
-            data = json.load(file)
-        return jsonify(data)
-    except FileNotFoundError:
-        return jsonify({"error": "Data not found"}), 404
+# # 데이터를 반환하는 라우트
+# @app.route('/get-data/<site>')
+# def get_data(site):
+#     filename = f'dataset\crawling\data_site{site}.json'
+#     try:
+#         with open(filename, 'r') as file:
+#             data = json.load(file)
+#         return jsonify(data)
+#     except FileNotFoundError:
+#         return jsonify({"error": "Data not found"}), 404
     
 if __name__ == '__main__':
     # 서버 시작 시 크롤링 바로 실행

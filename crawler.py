@@ -2,6 +2,7 @@ import httpx
 from bs4 import BeautifulSoup
 import time
 
+# 전체공지
 def crawl_notices():
     url = 'https://www.gachon.ac.kr/kor/7986/subview.do'
     # httpx를 사용하여 웹 페이지로부터 HTML 가져오기
@@ -21,6 +22,7 @@ def crawl_notices():
     
     return notices
 
+# 학사일정
 def crawl_academic_schedule():
     url = 'https://www.gachon.ac.kr/kor/1075/subview.do'
     with httpx.Client() as client:
@@ -39,6 +41,7 @@ def crawl_academic_schedule():
 
     return schedule
 
+# 중앙도서관 좌석
 def crawl_library_seats(type='READING', libno='2'):
     url = 'https://lib.gachon.ac.kr/main/seatAjax'
     data = {
@@ -55,6 +58,7 @@ def crawl_library_seats(type='READING', libno='2'):
 
     return body
 
+# 학식
 def crawl_cafeteria_menu():
     url = 'https://www.gachon.ac.kr/kor/7350/subview.do'
     # httpx를 사용하여 웹 페이지로부터 HTML 가져오기

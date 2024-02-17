@@ -2,7 +2,7 @@ import torch
 from sentence_transformers import SentenceTransformer, util
 import pandas as pd
 import numpy as np
-import time
+import json
 
 # 모델과 데이터를 로드하는 함수
 def load_data():
@@ -16,10 +16,9 @@ def load_data():
 # 유사한 질문을 찾는 함수
 def select_best_question(question, model, embedding_question, df):
         print("질문 문장 : ",question)
-        question = question.replace(" ","")
+        # question = question.replace(" ","")
         print("공백 제거 문장 : ", question)
 
-        start = time.time()
         # 질문 예시 문장 인코딩 후 텐서화
         question_encode = model.encode(question)
         question_tensor = torch.tensor(question_encode)
@@ -62,6 +61,17 @@ def select_best_question(question, model, embedding_question, df):
         else:
             button_name = button_name.strip().split('\n')
 
-        end = time.time()
-        print(f"질문 선정하는데 걸리는 시간 : {end - start: .5f} sec")
+        if answer == "전체공지":
+             with open("dataset\crawling\data_site1.json", 'r') as file:
+                  answer = json.load(file)
+        elif answer == "학사일정":
+             with open("dataset\crawling\data_site2.json", 'r') as file:
+                  answer = json.load(file)
+        elif answer == "도서관":
+             with open("dataset\crawling\data_site3.json", 'r') as file:
+                  answer = json.load(file)
+        elif answer == "학생식당":
+             with open("dataset\crawling\data_site4.json", 'r') as file:
+                  answer = json.load(file)
+
         return question, answer, link, button_name
