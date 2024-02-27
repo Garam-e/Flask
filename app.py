@@ -77,6 +77,7 @@ def get_question(question):
 #         return jsonify({"error": "Data not found"}), 404
     
 if __name__ == '__main__':
+    app.debug = True # 깃에 올릴때는 지우기
     # 서버 시작 시 크롤링 바로 실행
     crawl_site1()
     crawl_site2()
