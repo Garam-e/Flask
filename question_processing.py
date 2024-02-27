@@ -8,8 +8,8 @@ import json
 def load_data():
     print("데이터 로딩 중...")
     model = SentenceTransformer('snunlp/KR-SBERT-V40K-klueNLI-augSTS')
-    embedding_question = torch.load(f'dataset\qna\\23_11_05.pt')
-    df = pd.read_excel(f"dataset\qna\\23_11_05_embedding.xlsx")
+    embedding_question = torch.load(f"dataset/qna/23_11_05.pt")
+    df = pd.read_excel(f"dataset/qna/23_11_05_embedding.xlsx")
     print("데이터 로드 완료")
     return model, embedding_question, df
 
